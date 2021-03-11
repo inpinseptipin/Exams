@@ -24,7 +24,10 @@ namespace Exam_1
             };
             string response = Rest.sendRequest(Rest.REQUEST.GET, "https://api.openweathermap.org/data/2.5/weather", weatherParameters);
             var jsonWeatherModel=J_WeatherModel.Deserialize(response);
-            var xmlWeatherModel = X_WeatherModel.Deserialize(response);  
+            var xmlWeatherModel = X_WeatherModel.Deserialize(response);
+
+            //Console.WriteLine(jsonWeatherModel.coord.lat);
+            //Console.WriteLine(xmlWeatherModel.City.Id);
         }
 
     }

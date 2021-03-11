@@ -237,9 +237,17 @@ namespace Exam_1.Models.XMLModels
 
 		public static X_WeatherModel Deserialize(string response)
         {
-			XmlSerializer serializer = new XmlSerializer(typeof(X_WeatherModel));
-			TextReader reader = new StringReader(response);
-			return (X_WeatherModel)serializer.Deserialize(reader);
+			if(response.Contains("<?xml"))
+            {
+				XmlSerializer serializer = new XmlSerializer(typeof(X_WeatherModel));
+				TextReader reader = new StringReader(response);
+				return (X_WeatherModel)serializer.Deserialize(reader);
+			}
+            else
+            {
+				return null;
+            }
+			
 		}
 	}
 

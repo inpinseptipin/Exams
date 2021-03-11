@@ -130,9 +130,17 @@ namespace Exam_1.Models.JSONModels
 
         public static J_WeatherModel Deserialize(string response)
         {
-            JsonSerializerSettings serializerSettings = new JsonSerializerSettings();
-            serializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
-            return JsonConvert.DeserializeObject <J_WeatherModel>(response,serializerSettings);
+            if(!response.Contains("<?xml"))
+            {
+                JsonSerializerSettings serializerSettings = new JsonSerializerSettings();
+                serializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                return JsonConvert.DeserializeObject<J_WeatherModel>(response, serializerSettings);
+            }
+            else
+            {
+                return null;
+            }
+            
         }
     }
 
